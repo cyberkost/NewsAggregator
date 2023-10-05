@@ -1,0 +1,12 @@
+name: Demo Workflow
+on: workflow_dispatch
+jobs:
+  print:
+    runs-on: windows-latest
+    steps:
+      - name: Print to console
+        run: echo Hello GH Actions!
+      - name: Print a few lines
+        run: |
+          echo Frist line!
+          echo Second line!
