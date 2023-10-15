@@ -4,9 +4,9 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "bot_develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "bot_develop" ]
 
 jobs:
   build:
