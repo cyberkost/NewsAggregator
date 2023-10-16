@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
@@ -80,8 +81,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private void registerUser(Message msg) {
         if (userRepository.findById(msg.getChatId()).isEmpty()) {
-            var chatId = msg.getChatId();
-            var chat = msg.getChat();
+            Long chatId = msg.getChatId();
+            Chat chat = msg.getChat();
             User user = new User();
             user.setChatId(chatId);
             user.setFirstName(chat.getFirstName());
@@ -106,7 +107,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            log.error("Error occurred: " + e.getMessage());
+            log.error("Error occurred: " + e.getMessage(), e);
         }
     }
 }
